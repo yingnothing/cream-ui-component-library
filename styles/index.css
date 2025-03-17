@@ -1,0 +1,6 @@
+@import './reset.css';
+@import './vars.css';
+@import '../src/components/Button/style.css';
+@import '../src/components/collapse/style.css';
+@import '../src/components/Icon/style.css';
+@import '../src/components/Tooltip/style.css';

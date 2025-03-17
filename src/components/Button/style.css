@@ -1,0 +1,127 @@
+.eb-button {
+  --eb-button-font-weight: var(--eb-font-weight-primary);
+  --eb-button-border-color: var(--eb-border-color);
+  --eb-button-bg-color: var(--eb-fill-color-blank);
+  --eb-button-text-color: var(--eb-text-color-regular);
+  --eb-button-disabled-text-color: var(--eb-disabled-text-color);
+  --eb-button-disabled-bg-color: var(--eb-fill-color-blank);
+  --eb-button-disabled-border-color: var(--eb-border-color-light);
+  --eb-button-hover-text-color: var(--eb-color-primary);
+  --eb-button-hover-bg-color: var(--eb-color-primary-light-9);
+  --eb-button-hover-border-color: var(--eb-color-primary-light-7);
+  --eb-button-active-text-color: var(--eb-button-hover-text-color);
+  --eb-button-active-border-color: var(--eb-color-primary);
+  --eb-button-active-bg-color: var(--eb-button-hover-bg-color);
+  --eb-button-outline-color: var(--eb-color-primary-light-5);
+  --eb-button-active-color: var(--eb-text-color-primary);
+}
+.eb-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--eb-button-text-color);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  font-weight: var(--eb-button-font-weight);
+  user-select: none;
+  vertical-align: middle;
+  /* -webkit-appearance: none; */
+  background-color: var(--eb-button-bg-color);
+  border: var(--eb-border);
+  border-color: var(--eb-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--eb-font-size-base);
+  border-radius: var(--eb-border-radius-base);
+  & + & {
+    margin-left: 12px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--eb-button-hover-text-color);
+    border-color: var(--eb-button-hover-border-color);
+    background-color: var(--eb-button-hover-bg-color);
+    outline: none;
+  }
+  &:active {
+    color: var(--eb-button-active-text-color);
+    border-color: var(--eb-button-active-border-color);
+    background-color: var(--eb-button-active-bg-color);
+    outline: none;
+  }
+  &.is-plain {
+    --eb-button-hover-text-color: var(--eb-color-primary);
+    --eb-button-hover-bg-color: var(--eb-fill-color-blank);
+    --eb-button-hover-border-color: var(--eb-color-primary);
+  }
+  /*round*/
+  &.is-round {
+    border-radius: var(--eb-border-radius-round);
+  }
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  /*disabled*/
+  &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:focus,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus {
+    color: var(--eb-button-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+    background-color: var(--eb-button-disabled-bg-color);
+    border-color: var(--eb-button-disabled-border-color);
+  }
+  [class*='eb-icon'] + span {
+    margin-left: 6px;
+  }
+}
+@each $val in primary, success, warning, info, danger {
+  .eb-button--$(val) {
+    --eb-button-text-color: var(--eb-color-white);
+    --eb-button-bg-color: var(--eb-color-$(val));
+    --eb-button-border-color: var(--eb-color-$(val));
+    --eb-button-outline-color: var(--eb-color-$(val)-light-5);
+    --eb-button-active-color: var(--eb-color-$(val)-dark-2);
+    --eb-button-hover-text-color: var(--eb-color-white);
+    --eb-button-hover-bg-color: var(--eb-color-$(val)-light-3);
+    --eb-button-hover-border-color: var(--eb-color-$(val)-light-3);
+    --eb-button-active-bg-color: var(--eb-color-$(val)-dark-2);
+    --eb-button-active-border-color: var(--eb-color-$(val)-dark-2);
+    --eb-button-disabled-text-color: var(--eb-color-white);
+    --eb-button-disabled-bg-color: var(--eb-color-$(val)-light-5);
+    --eb-button-disabled-border-color: var(--eb-color-$(val)-light-5);
+  }
+  .eb-button--$(val).is-plain {
+    --eb-button-text-color: var(--eb-color-$(val));
+    --eb-button-bg-color: var(--eb-color-$(val)-light-9);
+    --eb-button-border-color: var(--eb-color-$(val)-light-5);
+    --eb-button-hover-text-color: var(--eb-color-white);
+    --eb-button-hover-bg-color: var(--eb-color-$(val));
+    --eb-button-hover-border-color: var(--eb-color-$(val));
+    --eb-button-active-text-color: var(--eb-color-white);
+  }
+}
+.eb-button--large {
+  --eb-button-size: 40px;
+  height: var(--eb-button-size);
+  padding: 12px 19px;
+  font-size: var(--eb-font-size-base);
+  border-radius: var(--eb-border-radius-base);
+}
+.eb-button--small {
+  --eb-button-size: 24px;
+  height: var(--eb-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--eb-border-radius-base) - 1px);
+}

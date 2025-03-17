@@ -1,0 +1,101 @@
+/* eslint-disable */
+:root {
+  /* colors */
+  --eb-color-white: #ffffff;
+  --eb-color-black: #000000;
+  --colors: (primary: #3083fd, success: #41b883, warning: #f7c50f, danger: #fc0203, info: #a0999a);
+
+  --eb-bg-color: #ffffff;
+  --eb-bg-color-page: #f2f3f5;
+  --eb-bg-color-overlay: #ffffff;
+  --eb-text-color-primary: #303133;
+  --eb-text-color-regular: #606266;
+  --eb-text-color-secondary: #909399;
+  --eb-text-color-placeholder: #a8abb2;
+  --eb-text-color-disabled: #c0c4cc;
+  --eb-border-color: #dcdfe6;
+  --eb-border-color-light: #e4e7ed;
+  --eb-border-color-lighter: #d6d7dc;
+  --eb-border-color-extra-light: #f2f6fc;
+  --eb-border-color-dark: #d4d7de;
+  --eb-border-color-darker: #cdd0d6;
+  --eb-fill-color: #f0f2f5;
+  --eb-fill-color-light: #f5f7fa;
+  --eb-fill-color-lighter: #fafafa;
+  --eb-fill-color-extra-light: #fafcff;
+  --eb-fill-color-dark: #ebedf0;
+  --eb-fill-color-darker: #e6e8eb;
+  --eb-fill-color-blank: #ffffff;
+
+  /* border */
+  --eb-border-width: 1px;
+  --eb-border-style: solid;
+  --eb-border-color-hover: var(--eb-text-color-disabled);
+  --eb-border: var(--eb-border-width) var(--eb-border-style) var(--eb-border-color);
+  --eb-border-radius-base: 4px;
+  --eb-border-radius-small: 2px;
+  --eb-border-radius-round: 20px;
+  --eb-border-radius-circle: 50%;
+
+  /*font*/
+  --eb-font-size-extra-large: 20px;
+  --eb-font-size-large: 18px;
+  --eb-font-size-medium: 16px;
+  --eb-font-size-base: 14px;
+  --eb-font-size-small: 13px;
+  --eb-font-size-extra-small: 12px;
+  --eb-font-family:
+    'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
+  --eb-font-weight-primary: 500;
+
+  /*disabled*/
+  --eb-disabled-bg-color: var(--eb-fill-color-light);
+  --eb-disabled-text-color: var(--eb-text-color-placeholder);
+  --eb-disabled-border-color: var(--eb-border-color-light);
+
+  /*animation*/
+  --eb-transition-duration: 0.3s;
+  --eb-transition-duration-fast: 0.2s;
+  /* stylelint-disable */
+  /* Manually expanded @each and @for logic */
+  --eb-color-primary: #3083fd;
+  --eb-color-primary-light-3: mix(#fff, #3083fd, 0.3);
+  --eb-color-primary-light-5: mix(#fff, #3083fd, 0.5);
+  --eb-color-primary-light-7: mix(#fff, #3083fd, 0.7);
+  --eb-color-primary-light-9: mix(#fff, #3083fd, 0.9);
+  --eb-color-primary-light-8: mix(#fff, #3083fd, 0.8);
+  --eb-color-primary-dark-2: mix(#000, #3083fd, 0.2);
+
+  --eb-color-success: #41b883;
+  --eb-color-success-light-3: mix(#fff, #41b883, 0.3);
+  --eb-color-success-light-5: mix(#fff, #41b883, 0.5);
+  --eb-color-success-light-7: mix(#fff, #41b883, 0.7);
+  --eb-color-success-light-9: mix(#fff, #41b883, 0.9);
+  --eb-color-success-light-8: mix(#fff, #41b883, 0.8);
+  --eb-color-success-dark-2: mix(#000, #41b883, 0.2);
+
+  --eb-color-warning: #f7c50f;
+  --eb-color-warning-light-3: mix(#fff, #f7c50f, 0.3);
+  --eb-color-warning-light-5: mix(#fff, #f7c50f, 0.5);
+  --eb-color-warning-light-7: mix(#fff, #f7c50f, 0.7);
+  --eb-color-warning-light-9: mix(#fff, #f7c50f, 0.9);
+  --eb-color-warning-light-8: mix(#fff, #f7c50f, 0.8);
+  --eb-color-warning-dark-2: mix(#000, #f7c50f, 0.2);
+
+  --eb-color-danger: #fc0203;
+  --eb-color-danger-light-3: mix(#fff, #fc0203, 0.3);
+  --eb-color-danger-light-5: mix(#fff, #fc0203, 0.5);
+  --eb-color-danger-light-7: mix(#fff, #fc0203, 0.7);
+  --eb-color-danger-light-9: mix(#fff, #fc0203, 0.9);
+  --eb-color-danger-light-8: mix(#fff, #fc0203, 0.8);
+  --eb-color-danger-dark-2: mix(#000, #fc0203, 0.2);
+
+  --eb-color-info: #a0999a;
+  --eb-color-info-light-3: mix(#fff, #a0999a, 0.3);
+  --eb-color-info-light-5: mix(#fff, #a0999a, 0.5);
+  --eb-color-info-light-7: mix(#fff, #a0999a, 0.7);
+  --eb-color-info-light-9: mix(#fff, #a0999a, 0.9);
+  --eb-color-info-light-8: mix(#fff, #a0999a, 0.8);
+  --eb-color-info-dark-2: mix(#000, #a0999a, 0.2);
+}
