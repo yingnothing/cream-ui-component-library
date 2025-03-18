@@ -1,0 +1,58 @@
+.eb-message {
+  --eb-message-bg-color: var(--eb-color-info-light-9);
+  --eb-message-border-color: var(--eb-border-color-lighter);
+  --eb-message-padding: 15px 19px;
+  --eb-message-close-size: 16px;
+  --eb-message-close-icon-color: var(--eb-text-color-placeholder);
+  --eb-message-close-hover-color: var(--eb-text-color-secondary);
+}
+.eb-message {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  box-sizing: border-box;
+  border-radius: var(--eb-border-radius-base);
+  border-width: var(--eb-border-width);
+  border-style: var(--eb-border-style);
+  border-color: var(--eb-message-border-color);
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  background-color: var(--eb-message-bg-color);
+  padding: var(--eb-message-padding);
+  display: flex;
+  align-items: center;
+  transition:
+    top var(--eb-transition-duration),
+    opacity var(--eb-transition-duration),
+    transform var(--eb-transition-duration);
+  .eb-message__content {
+    color: var(--eb-message-text-color);
+    overflow-wrap: anywhere;
+  }
+  &.is-close .eb-message__content {
+    padding-right: 30px;
+  }
+  .eb-message__close {
+    display: flex;
+    align-items: center;
+  }
+  .eb-message__close svg {
+    cursor: pointer;
+  }
+}
+@each $val in info, success, warning, danger {
+  .eb-message--$(val) {
+    --eb-message-bg-color: var(--eb-color-$(val)-light-9);
+    --eb-message-border-color: var(--eb-color-$(val)-light-8);
+    --eb-message-text-color: var(--eb-color-$(val));
+    .eb-message__close {
+      --eb-icon-color: var(--eb-color-$(val));
+    }
+  }
+}
+.ev-message.fade-up-enter-from,
+.eb-message.fade-up-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}

@@ -20,6 +20,7 @@
   <Tooltip content="Tooltip:hover" placement="right" trigger="hover" ref="toolTip">
     Tooltip
   </Tooltip>
+  <Message message="123"></Message>
 </template>
 <script setup lang="ts">
 import Button from './components/Button/Button.vue';
@@ -27,7 +28,11 @@ import Colapse from './components/collapse/Colapse.vue';
 import ColapseItem from './components/collapse/ColapseItem.vue';
 import Icon from './components/Icon/Icon.vue';
 import Tooltip from './components/Tooltip/Tooltip.vue';
-
+import Message from './components/Message/Message.vue';
+import { EbMessage } from './components/Message/create';
+EbMessage({
+  message: '我是消息'
+})
 const activeNames = [1, 2, 3]
 setTimeout(() => {
   activeNames.pop()
