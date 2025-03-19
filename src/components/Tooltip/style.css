@@ -1,26 +1,31 @@
+/* Tooltip变量定义 */
 .eb-tooltip {
-  --eb-popover-bg-color: var(--eb-bg-color-overlay);
-  --eb-popover-font-size: var(--eb-font-size-base);
-  --eb-popover-border-color: var(--eb-border-color);
-  --eb-popover-padding: 12px;
-  --eb-popover-border-radius: 4px;
+  --eb-popover-bg-color: var(--eb-bg-color-overlay); /* 使用全局覆盖层背景色 */
+  --eb-popover-font-size: var(--eb-font-size-base); /* 使用全局基础字体大小 */
+  --eb-popover-border-color: var(--eb-border-color); /* 使用全局边框色 */
+  --eb-popover-padding: 12px; /* 内边距 */
+  --eb-popover-border-radius: 4px; /* 圆角 */
   display: inline-block;
 }
 
+/* Tooltip基础样式 */
 .eb-tooltip {
+  /* 弹出层样式 */
   .eb-tooltip__popper {
     background: var(--eb-popover-bg-color);
     border-radius: var(--eb-popover-border-radius);
     border: 1px solid var(--eb-popover-border-color);
     padding: var(--eb-popover-padding);
-    color: var(--eb-text-color-regular);
+    color: var(--eb-text-color-regular); /* 使用全局常规文本颜色 */
     line-height: 1.4;
     text-align: justify;
     font-size: var(--eb-popover-font-size);
-    box-shadow: var(--eb-box-shadow-light);
-    word-break: break-all;
+    box-shadow: var(--eb-box-shadow-light); /* 使用全局阴影 */
+    word-break: break-all; /* 文本换行 */
     box-sizing: border-box;
-    z-index: 1000;
+    z-index: 1000; /* 层级控制 */
+    
+    /* 箭头样式 */
     #arrow,
     #arrow::before {
       position: absolute;
@@ -29,54 +34,64 @@
       box-sizing: border-box;
       background: var(--eb-popover-bg-color);
     }
+    
     #arrow {
-      visibility: hidden;
+      visibility: hidden; /* 隐藏真实箭头 */
     }
+    
     #arrow::before {
       visibility: visible;
       content: '';
-      transform: rotate(45deg);
+      transform: rotate(45deg); /* 旋转45度形成箭头形状 */
     }
+    
+    /* 不同位置箭头的位置调整 */
     &[data-popper-placement^='top'] > #arrow {
-      bottom: -5px;
+      bottom: -5px; /* 顶部提示时箭头在底部 */
     }
-
+    
     &[data-popper-placement^='bottom'] > #arrow {
-      top: -5px;
+      top: -5px; /* 底部提示时箭头在顶部 */
     }
-
+    
     &[data-popper-placement^='left'] > #arrow {
-      right: -5px;
+      right: -5px; /* 左侧提示时箭头在右侧 */
     }
-
+    
     &[data-popper-placement^='right'] > #arrow {
-      left: -5px;
+      left: -5px; /* 右侧提示时箭头在左侧 */
     }
+    
+    /* 不同位置箭头的边框样式 - 模拟箭头效果 */
     &[data-popper-placement^='top'] > #arrow::before {
       border-right: 1px solid var(--eb-popover-border-color);
       border-bottom: 1px solid var(--eb-popover-border-color);
     }
+    
     &[data-popper-placement^='bottom'] > #arrow::before {
       border-left: 1px solid var(--eb-popover-border-color);
       border-top: 1px solid var(--eb-popover-border-color);
     }
+    
     &[data-popper-placement^='left'] > #arrow::before {
       border-right: 1px solid var(--eb-popover-border-color);
       border-top: 1px solid var(--eb-popover-border-color);
     }
+    
     &[data-popper-placement^='right'] > #arrow::before {
       border-left: 1px solid var(--eb-popover-border-color);
       border-bottom: 1px solid var(--eb-popover-border-color);
     }
   }
-
+  
+  /* 过渡动画 */
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity var(--eb-transition-duration);
+    transition: opacity var(--eb-transition-duration); /* 使用全局过渡时间 */
   }
-
+  
   .fade-enter-from,
   .fade-leave-to {
-    opacity: 0;
+    opacity: 0; /* 淡入淡出效果 */
   }
 }

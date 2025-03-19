@@ -1,58 +1,74 @@
+/* 消息组件变量定义 */
 .eb-message {
-  --eb-message-bg-color: var(--eb-color-info-light-9);
-  --eb-message-border-color: var(--eb-border-color-lighter);
-  --eb-message-padding: 15px 19px;
-  --eb-message-close-size: 16px;
-  --eb-message-close-icon-color: var(--eb-text-color-placeholder);
-  --eb-message-close-hover-color: var(--eb-text-color-secondary);
+  --eb-message-bg-color: var(--eb-color-info-light-9); /* 使用info主题的超浅色作为背景 */
+  --eb-message-border-color: var(--eb-border-color-lighter); /* 使用全局边框色 */
+  --eb-message-padding: 15px 19px; /* 内边距 */
+  --eb-message-close-size: 16px; /* 关闭按钮大小 */
+  --eb-message-close-icon-color: var(--eb-text-color-placeholder); /* 关闭图标颜色 */
+  --eb-message-close-hover-color: var(--eb-text-color-secondary); /* 关闭图标悬停颜色 */
 }
+
+/* 消息组件基础样式 */
 .eb-message {
-  width: fit-content;
-  max-width: calc(100% - 32px);
+  width: fit-content; /* 适应内容宽度 */
+  max-width: calc(100% - 32px); /* 最大宽度限制 */
   box-sizing: border-box;
-  border-radius: var(--eb-border-radius-base);
+  border-radius: var(--eb-border-radius-base); /* 使用全局圆角 */
   border-width: var(--eb-border-width);
   border-style: var(--eb-border-style);
   border-color: var(--eb-message-border-color);
-  position: fixed;
+  position: fixed; /* 固定定位 - 用于弹出消息 */
   left: 50%;
   top: 20px;
-  transform: translateX(-50%);
+  transform: translateX(-50%); /* 水平居中 */
   background-color: var(--eb-message-bg-color);
   padding: var(--eb-message-padding);
   display: flex;
   align-items: center;
+  /* 过渡动画 */
   transition:
     top var(--eb-transition-duration),
     opacity var(--eb-transition-duration),
     transform var(--eb-transition-duration);
+    
+  /* 消息内容 */
   .eb-message__content {
     color: var(--eb-message-text-color);
-    overflow-wrap: anywhere;
+    overflow-wrap: anywhere; /* 文本换行 */
   }
+  
+  /* 有关闭按钮时的内容样式 */
   &.is-close .eb-message__content {
-    padding-right: 30px;
+    padding-right: 30px; /* 为关闭按钮留出空间 */
   }
+  
+  /* 关闭按钮 */
   .eb-message__close {
     display: flex;
     align-items: center;
   }
+  
+  /* 关闭图标 */
   .eb-message__close svg {
     cursor: pointer;
   }
 }
+/* 不同类型消息样式 (info, success, warning, danger) */
 @each $val in info, success, warning, danger {
   .eb-message--$(val) {
-    --eb-message-bg-color: var(--eb-color-$(val)-light-9);
-    --eb-message-border-color: var(--eb-color-$(val)-light-8);
-    --eb-message-text-color: var(--eb-color-$(val));
+    --eb-message-bg-color: var(--eb-color-$(val)-light-9); /* 使用对应主题色的超浅色 */
+    --eb-message-border-color: var(--eb-color-$(val)-light-8); /* 使用对应主题色的较浅色 */
+    --eb-message-text-color: var(--eb-color-$(val)); /* 使用对应主题色 */
+    
+    /* 关闭图标颜色 */
     .eb-message__close {
       --eb-icon-color: var(--eb-color-$(val));
     }
   }
 }
+/* 过渡动画类 */
 .ev-message.fade-up-enter-from,
 .eb-message.fade-up-leave-to {
   opacity: 0;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -100%); /* 向上消失 */
 }

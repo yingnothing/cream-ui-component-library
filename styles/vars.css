@@ -1,72 +1,81 @@
-/* eslint-disable */
+/* 全局CSS变量定义文件 - 组件库的设计系统基础 */
 :root {
-  /* colors */
-  --eb-color-white: #ffffff;
-  --eb-color-black: #000000;
+  /* 基础颜色系统 */
+  --eb-color-white: #ffffff; /* 白色 - 用于背景和文本 */
+  --eb-color-black: #000000; /* 黑色 - 用于强调和边界 */
+  
+  /* 主题色定义 - 用于不同状态和类型的组件 */
   --colors: (primary: #3083fd, success: #41b883, warning: #f7c50f, danger: #fc0203, info: #a0999a);
-
-  --eb-bg-color: #ffffff;
-  --eb-bg-color-page: #f2f3f5;
-  --eb-bg-color-overlay: #ffffff;
-  --eb-text-color-primary: #303133;
-  --eb-text-color-regular: #606266;
-  --eb-text-color-secondary: #909399;
-  --eb-text-color-placeholder: #a8abb2;
-  --eb-text-color-disabled: #c0c4cc;
-  --eb-border-color: #dcdfe6;
-  --eb-border-color-light: #e4e7ed;
-  --eb-border-color-lighter: #d6d7dc;
-  --eb-border-color-extra-light: #f2f6fc;
-  --eb-border-color-dark: #d4d7de;
-  --eb-border-color-darker: #cdd0d6;
-  --eb-fill-color: #f0f2f5;
-  --eb-fill-color-light: #f5f7fa;
-  --eb-fill-color-lighter: #fafafa;
-  --eb-fill-color-extra-light: #fafcff;
-  --eb-fill-color-dark: #ebedf0;
-  --eb-fill-color-darker: #e6e8eb;
-  --eb-fill-color-blank: #ffffff;
-
-  /* border */
-  --eb-border-width: 1px;
-  --eb-border-style: solid;
-  --eb-border-color-hover: var(--eb-text-color-disabled);
-  --eb-border: var(--eb-border-width) var(--eb-border-style) var(--eb-border-color);
-  --eb-border-radius-base: 4px;
-  --eb-border-radius-small: 2px;
-  --eb-border-radius-round: 20px;
-  --eb-border-radius-circle: 50%;
-
-  /*font*/
-  --eb-font-size-extra-large: 20px;
-  --eb-font-size-large: 18px;
-  --eb-font-size-medium: 16px;
-  --eb-font-size-base: 14px;
-  --eb-font-size-small: 13px;
-  --eb-font-size-extra-small: 12px;
-  --eb-font-family:
-    'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
-    '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
-  --eb-font-weight-primary: 500;
-
-  /*disabled*/
-  --eb-disabled-bg-color: var(--eb-fill-color-light);
-  --eb-disabled-text-color: var(--eb-text-color-placeholder);
-  --eb-disabled-border-color: var(--eb-border-color-light);
-
-  /*animation*/
-  --eb-transition-duration: 0.3s;
-  --eb-transition-duration-fast: 0.2s;
-  /* stylelint-disable */
-  /* Manually expanded @each and @for logic */
-  --eb-color-primary: #3083fd;
-  --eb-color-primary-light-3: mix(#fff, #3083fd, 0.3);
-  --eb-color-primary-light-5: mix(#fff, #3083fd, 0.5);
-  --eb-color-primary-light-7: mix(#fff, #3083fd, 0.7);
-  --eb-color-primary-light-9: mix(#fff, #3083fd, 0.9);
-  --eb-color-primary-light-8: mix(#fff, #3083fd, 0.8);
-  --eb-color-primary-dark-2: mix(#000, #3083fd, 0.2);
-
+  
+  /* 背景色系统 - 从页面背景到覆盖层 */
+  --eb-bg-color: #ffffff; /* 默认背景色 */
+  --eb-bg-color-page: #f2f3f5; /* 页面背景色 - 略微灰色提供层次感 */
+  --eb-bg-color-overlay: #ffffff; /* 覆盖层背景色 - 用于弹出框等 */
+  
+  /* 文本颜色系统 - 从主要到禁用的渐变 */
+  --eb-text-color-primary: #303133; /* 主要文本 - 最深，用于标题等 */
+  --eb-text-color-regular: #606266; /* 常规文本 - 正文内容 */
+  --eb-text-color-secondary: #909399; /* 次要文本 - 辅助信息 */
+  --eb-text-color-placeholder: #a8abb2; /* 占位符文本 - 输入框等 */
+  --eb-text-color-disabled: #c0c4cc; /* 禁用文本 - 不可交互元素 */
+  
+  /* 边框颜色系统 - 从深到浅的渐变 */
+  --eb-border-color: #dcdfe6; /* 标准边框色 */
+  --eb-border-color-light: #e4e7ed; /* 轻度边框色 */
+  --eb-border-color-lighter: #d6d7dc; /* 更轻边框色 */
+  --eb-border-color-extra-light: #f2f6fc; /* 极轻边框色 */
+  --eb-border-color-dark: #d4d7de; /* 深色边框 */
+  --eb-border-color-darker: #cdd0d6; /* 更深边框色 */
+  
+  /* 填充色系统 - 用于背景填充 */
+  --eb-fill-color: #f0f2f5; /* 标准填充色 */
+  --eb-fill-color-light: #f5f7fa; /* 轻度填充色 */
+  --eb-fill-color-lighter: #fafafa; /* 更轻填充色 */
+  --eb-fill-color-extra-light: #fafcff; /* 极轻填充色 */
+  --eb-fill-color-dark: #ebedf0; /* 深色填充 */
+  --eb-fill-color-darker: #e6e8eb; /* 更深填充色 */
+  --eb-fill-color-blank: #ffffff; /* 空白填充色 - 纯白 */
+  
+  /* 边框样式定义 */
+  --eb-border-width: 1px; /* 边框宽度 */
+  --eb-border-style: solid; /* 边框样式 - 实线 */
+  --eb-border-color-hover: var(--eb-text-color-disabled); /* 悬停时边框色 */
+  --eb-border: var(--eb-border-width) var(--eb-border-style) var(--eb-border-color); /* 组合边框属性 */
+  --eb-border-radius-base: 4px; /* 基础圆角 */
+  --eb-border-radius-small: 2px; /* 小圆角 */
+  --eb-border-radius-round: 20px; /* 圆形边框 - 用于胶囊按钮 */
+  --eb-border-radius-circle: 50%; /* 圆形 - 用于圆形按钮或头像 */
+  
+  /* 字体系统 */
+  --eb-font-size-extra-large: 20px; /* 特大字体 */
+  --eb-font-size-large: 18px; /* 大字体 */
+  --eb-font-size-medium: 16px; /* 中等字体 */
+  --eb-font-size-base: 14px; /* 基础字体大小 */
+  --eb-font-size-small: 13px; /* 小字体 */
+  --eb-font-size-extra-small: 12px; /* 特小字体 */
+  --eb-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    '\5fae\8f6f\96c5\9ed1', Arial, sans-serif; /* 字体族 - 优先使用系统字体 */
+  --eb-font-weight-primary: 500; /* 主要字重 - 稍重于normal */
+  
+  /* 禁用状态样式 */
+  --eb-disabled-bg-color: var(--eb-fill-color-light); /* 禁用状态背景色 */
+  --eb-disabled-text-color: var(--eb-text-color-placeholder); /* 禁用状态文本色 */
+  --eb-disabled-border-color: var(--eb-border-color-light); /* 禁用状态边框色 */
+  
+  /* 动画时间 */
+  --eb-transition-duration: 0.3s; /* 标准过渡时间 */
+  --eb-transition-duration-fast: 0.2s; /* 快速过渡时间 */
+  
+  /* 主题色变体系统 - 为每种主题色创建不同亮度的变体 */
+  /* primary主题色系列 */
+  --eb-color-primary: #3083fd; /* 主色 */
+  --eb-color-primary-light-3: mix(#fff, #3083fd, 0.3); /* 浅色变体 - 30%白 */
+  --eb-color-primary-light-5: mix(#fff, #3083fd, 0.5); /* 浅色变体 - 50%白 */
+  --eb-color-primary-light-7: mix(#fff, #3083fd, 0.7); /* 浅色变体 - 70%白 */
+  --eb-color-primary-light-8: mix(#fff, #3083fd, 0.8); /* 浅色变体 - 80%白 */
+  --eb-color-primary-light-9: mix(#fff, #3083fd, 0.9); /* 浅色变体 - 90%白 */
+  --eb-color-primary-dark-2: mix(#000, #3083fd, 0.2); /* 深色变体 - 20%黑 */
+  
   --eb-color-success: #41b883;
   --eb-color-success-light-3: mix(#fff, #41b883, 0.3);
   --eb-color-success-light-5: mix(#fff, #41b883, 0.5);

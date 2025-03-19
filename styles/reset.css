@@ -1,88 +1,73 @@
+/* 样式重置和基础样式定义文件 - 为组件库提供一致的基础样式 */
+
 body {
-  font-family: var(--eb-font-family);
-  font-weight: 400;
-  font-size: var(--eb-font-size-base);
-  color: var(--eb-text-color-primary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: transparent;
+  font-family: var(--eb-font-family); /* 使用vars.css中定义的字体族 */
+  font-weight: 400; /* 标准字重 */
+  font-size: var(--eb-font-size-base); /* 使用基础字体大小 */
+  color: var(--eb-text-color-primary); /* 使用主要文本颜色 */
+  -webkit-font-smoothing: antialiased; /* 字体平滑渲染 */
+  -moz-osx-font-smoothing: grayscale; /* 字体平滑渲染(Firefox) */
+  -webkit-tap-highlight-color: transparent; /* 移动端点击不显示高亮 */
 }
-
+/* 链接样式 */
 a {
-  color: var(--eb-color-primary);
-  text-decoration: none;
-
+  color: var(--eb-color-primary); /* 使用主题色 */
+  text-decoration: none; /* 移除下划线 */
+  
+  /* 不同状态的链接颜色 */
   &:hover,
   &:focus {
-    color: var(--eb-color-primary-light-3);
+    color: var(--eb-color-primary-light-3); /* 悬停时使用较浅的主题色 */
   }
-
+  
   &:active {
-    color: var(--eb-color-primary-dark-2);
+    color: var(--eb-color-primary-dark-2); /* 激活时使用较深的主题色 */
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--eb-text-color-regular);
-  font-weight: inherit;
 
+/* 标题样式统一 */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--eb-text-color-regular); /* 使用常规文本颜色 */
+  font-weight: inherit; /* 继承字重 */
+  
+  /* 移除标题的默认边距 */
   &:first-child {
     margin-top: 0;
   }
-
+  
   &:last-child {
     margin-bottom: 0;
   }
 }
 
-h1 {
-  font-size: calc(var(--eb-font-size-base) + 6px);
-}
 
-h2 {
-  font-size: calc(var(--eb-font-size-base) + 4px);
-}
+/* 不同级别标题大小定义 */
+h1 { font-size: calc(var(--eb-font-size-base) + 6px); } /* 基础+6px */
+h2 { font-size: calc(var(--eb-font-size-base) + 4px); } /* 基础+4px */
+h3 { font-size: calc(var(--eb-font-size-base) + 2px); } /* 基础+2px */
 
-h3 {
-  font-size: calc(var(--eb-font-size-base) + 2px);
-}
-
-h4,
-h5,
-h6,
-p {
-  font-size: inherit;
-}
+/* 其他元素样式重置 */
+h4, h5, h6, p { font-size: inherit; }
 
 p {
-  line-height: 1.8;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  line-height: 1.8; /* 段落行高 */
+  
+  /* 移除段落默认边距 */
+  &:first-child { margin-top: 0; }
+  &:last-child { margin-bottom: 0; }
 }
 
-sup,
-sub {
-  font-size: calc(var(--eb-font-size-base) - 1px);
-}
+/* 上标下标 */
+sup, sub { font-size: calc(var(--eb-font-size-base) - 1px); }
 
-small {
-  font-size: calc(var(--eb-font-size-base) - 2px);
-}
+/* 小字 */
+small { font-size: calc(var(--eb-font-size-base) - 2px); }
 
+/* 水平分割线 */
 hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid var(--eb-border-color-lighter);
+  border-top: 1px solid var(--eb-border-color-lighter); /* 使用较浅的边框色 */
 }

@@ -1,8 +1,11 @@
+/* Button组件样式 - 提供不同类型和状态的按钮 */
+
+/* 按钮变量定义 - 在组件级别重新定义局部变量 */
 .eb-button {
-  --eb-button-font-weight: var(--eb-font-weight-primary);
-  --eb-button-border-color: var(--eb-border-color);
-  --eb-button-bg-color: var(--eb-fill-color-blank);
-  --eb-button-text-color: var(--eb-text-color-regular);
+  --eb-button-font-weight: var(--eb-font-weight-primary); /* 使用全局字重 */
+  --eb-button-border-color: var(--eb-border-color); /* 使用全局边框色 */
+  --eb-button-bg-color: var(--eb-fill-color-blank); /* 使用全局填充色 */
+  --eb-button-text-color: var(--eb-text-color-regular); /* 使用全局文本色 */
   --eb-button-disabled-text-color: var(--eb-disabled-text-color);
   --eb-button-disabled-bg-color: var(--eb-fill-color-blank);
   --eb-button-disabled-border-color: var(--eb-border-color-light);
@@ -15,15 +18,17 @@
   --eb-button-outline-color: var(--eb-color-primary-light-5);
   --eb-button-active-color: var(--eb-text-color-primary);
 }
+
+/* 按钮基础样式 */
 .eb-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
-  height: 32px;
-  white-space: nowrap;
-  cursor: pointer;
-  color: var(--eb-button-text-color);
+  display: inline-flex; /* 行内弹性布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  line-height: 1; /* 行高 */
+  height: 32px; /* 标准高度 */
+  white-space: nowrap; /* 文本不换行 */
+  cursor: pointer; /* 鼠标指针 */
+  color: var(--eb-button-text-color); /* 文本颜色 */
   text-align: center;
   box-sizing: border-box;
   outline: none;
@@ -38,9 +43,11 @@
   padding: 8px 15px;
   font-size: var(--eb-font-size-base);
   border-radius: var(--eb-border-radius-base);
+  /* 相邻按钮间距 */
   & + & {
-    margin-left: 12px;
+    margin-left: 12px; 
   }
+  /* 悬停和焦点状态 */
   &:hover,
   &:focus {
     color: var(--eb-button-hover-text-color);
