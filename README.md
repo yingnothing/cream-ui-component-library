@@ -16,8 +16,8 @@ yarn add cream-ui
 ```
 
 ## 使用
+### 打开使用说明文档
 pnpm run docs:dev
-打开使用说明文档
 ### 全局引入
 
 ```js
@@ -65,10 +65,10 @@ CrMessage.success('操作成功')
 pnpm install
 
 # 开发模式
-pnpm dev
+pnpm run dev
 
 # 构建
-pnpm build
+pnpm run build
 ```
 
 
