@@ -1,27 +1,34 @@
 <!-- 未完成 -->
 <template>
-  <div class="eb-tooltip" ref="popperContainNode" v-on="outerEvents">
+  <div class="cr-tooltip" ref="popperContainNode" v-on="outerEvents">
     <!-- 触发区域 -->
-    <div class="eb-tooltip__trigger" ref="triggerNode" v-on="enterEvents">
+    <div class="cr-tooltip__trigger" ref="triggerNode" v-on="enterEvents" @mouseenter="updateHovering(true)"
+      @mouseleave="updateHovering(false)">
       <slot></slot>
     </div>
     <!-- 展示区域 -->
-    <div class="eb-tooltip__popper" ref="popperNode" v-show="isOpen">
+    <div class="cr-tooltip__popper" ref="popperNode" v-show="isOpen" @mouseenter="updateHovering(true)"
+      @mouseleave="updateHovering(false)">
       <slot name="content">{{ content }}</slot>
-      <!-- <div id="arrow" data-popper-arrow></div> -->
+      <div id="arrow" data-popper-arrow></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue';
 import type { TooltipEmits, TooltipInstance, TooltipProps } from './types';
 import { createPopper } from '@popperjs/core';
 import type { Instance } from '@popperjs/core'
-import useClickOutside from '@/hooks/useUtilTooltip';
+import useClickOutside from '../../hooks/useUtilTooltip.ts';
 import { debounce } from 'lodash-es';
+
+onMounted(() => {
+  console.log(props.trigger);
+
+})
 defineOptions({
-  name: 'eb-tooltip'
+  name: 'crTooltip'
 })
 const props = withDefaults(defineProps<TooltipProps>(), {
   trigger: 'hover',
@@ -30,7 +37,7 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   closeDelay: 0,
 })
 const emits = defineEmits<TooltipEmits>()
-// 因为要使用poper.js
+// 使用popper.js
 const triggerNode = ref<HTMLElement>()
 const popperNode = ref<HTMLElement>()
 // 整个区域
@@ -39,7 +46,14 @@ const popperContainNode = ref<HTMLElement>()
 const isOpen = ref<boolean>(false)
 // 用于销毁实例
 let popperInstance: null | Instance = null
-// 使用当前用户传递过来的配置项和默认的配置项进行结合，用户传过来的可能未undefine?
+// 用于记录是否仍位于toolTip中
+let isHovering = ref(false)
+const updateHovering = (val: boolean) => {
+  isHovering.value = val
+  console.log(' isHovering.value为：' + isHovering.value);
+
+}
+// 使用当前用户传递过来的配置项和默认的配置项进行结合，用户传过来的可能为undefine?
 const popperOptions = computed(() => {
   return {
     placement: props.placement,
@@ -47,7 +61,7 @@ const popperOptions = computed(() => {
       {
         name: 'offset',
         options: {
-          offset: [0, 10],
+          offset: [0, 8],
         },
       }
     ],
@@ -56,10 +70,15 @@ const popperOptions = computed(() => {
   }
 })
 // 创建实例，这个得在watch里，如果没有可能会有错误后面看看是什么错误，
-watch(isOpen, (newVal) => {
+watch(isOpen, async (newVal) => {
   if (newVal) {
+    await nextTick(); // 等待 DOM 完全更新
+    console.log('创建实例');
+
     if (triggerNode.value && popperNode.value) {
       popperInstance = createPopper(triggerNode.value, popperNode.value, popperOptions.value)
+
+
     } else {
       popperInstance?.destroy()
     }
@@ -69,13 +88,20 @@ watch(isOpen, (newVal) => {
 
 // 鼠标移入就打开
 const openTooltip = () => {
+  console.log('设置isOpen.value为true');
+
   isOpen.value = true
   emits('visible-change', true)
 }
 // 鼠标移开就关闭
 const closeTooltip = () => {
-  isOpen.value = false
-  emits('visible-change', false)
+  setTimeout(() => {
+    if (isHovering.value === false) {
+      isOpen.value = false
+      emits('visible-change', false)
+    }
+  }, 300)
+
 }
 const openTooltipDebounce = debounce(openTooltip, props.openDelay)
 const closeTooltipDebounce = debounce(closeTooltip, props.closeDelay)
@@ -84,19 +110,36 @@ let enterEvents: Record<string, unknown> = reactive({})
 let outerEvents: Record<string, unknown> = reactive({})
 // 点击的时候触发该事件
 const handlePopper = () => {
+  console.log('我点击了触发区');
+
   if (isOpen.value) {
+    console.log('执行了closeTooltipDebounce');
+
     closeTooltipDebounce()
   } else {
+    console.log('执行了openTooltipDebounce');
+
     openTooltipDebounce()
   }
+  console.log('当前isOpen.value:' + isOpen.value);
+
 }
 // 决定绑定的事件，应该在onMounted开启
 const attachEvents = () => {
+  console.log("当前props.trigger:" + props.trigger);
+
   if (props.trigger === 'hover') {
+    console.log('当前是hover模式');
+
     enterEvents['mouseenter'] = openTooltipDebounce
     outerEvents['mouseleave'] = closeTooltipDebounce
   } else {
+    console.log('组件被设置为click');
+
     enterEvents['click'] = handlePopper
+    console.log(enterEvents['click']);
+
+
   }
 }
 // 点击屏幕外也能取消
@@ -108,6 +151,7 @@ const attachEvents = () => {
 //   }
 // }
 onMounted(() => {
+
   if (!props.manual) {
     attachEvents()
   }
@@ -127,6 +171,8 @@ onMounted(() => {
 if (props.trigger === 'click') {
   useClickOutside(popperContainNode, () => {
     if (isOpen.value === true && !props.manual) {
+      console.log("isOpen.value" + isOpen.value);
+
       closeTooltipDebounce()
     }
   })
@@ -134,6 +180,7 @@ if (props.trigger === 'click') {
 // 打开和关闭的延迟时间
 // 添加manual
 defineExpose<TooltipInstance>({
+  isOpen: isOpen,
   'show': openTooltipDebounce,
   'hide': closeTooltipDebounce
 })

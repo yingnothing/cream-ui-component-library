@@ -1,0 +1,13 @@
+<script setup>
+import crTooltip from '@/components/Tooltip/Tooltip.vue'
+import crButton from '@/components/Button/Button.vue'
+</script>
+<template>
+<div class="basic block">
+  <crTooltip
+    content="hello tooltip"
+  >
+    <crButton> 激活 Tooltip </crButton>
+  </crTooltip>
+</div>
+</template>

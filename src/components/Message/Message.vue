@@ -1,12 +1,14 @@
 <template>
-  <div class="eb-message" ref="messageRef" v-show="visible" @mouseenter="clearTimer" @mouseleave="startTimer"
-    :style="topStyle">
+  <div class="cr-message" ref="messageRef" v-show="visible" @mouseenter="clearTimer" @mouseleave="startTimer"
+    :style="topAndZIndexStyle" :class="{
+      [`cr-message--${type}`]: type, 'is-close': props.showClose
+    }">
     <!-- 内容 -->
-    <div class="eb-message__content">
+    <div class="cr-message__content">
       <slot>{{ props.message }}</slot>
     </div>
     <!-- x号 -->
-    <div class="eb-message__close" v-if="props.showClose">
+    <div class="cr-message__close" v-if="props.showClose">
       <Icon icon="xmark" @click="handleClose"></Icon>
     </div>
   </div>
@@ -18,7 +20,7 @@ import Icon from '../Icon/Icon.vue';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { getLastBottomOffset } from './create';
 defineOptions({
-  name: 'EbMessage'
+  name: 'crMessage'
 })
 const props = withDefaults(defineProps<MessageProps>(), {
   type: 'info',
@@ -29,6 +31,7 @@ const props = withDefaults(defineProps<MessageProps>(), {
 const visible = ref<boolean>(true)
 // 添加点击关闭事件
 const handleClose = () => {
+  console.log('handleClose 被调用了')
   visible.value = false
 }
 // 考虑鼠标放上去时不会消失
@@ -41,6 +44,7 @@ const clearTimer = () => {
 }
 const startTimer = () => {
   if (props.duration > 0) {
+    console.log('当前的duration', props.duration);
 
     // 默认3s后消失
     timer = setTimeout(() => {
@@ -72,14 +76,17 @@ const bottomOffset = computed(() => {
   return topOffset.value + messageHeight.value
 })
 // 使用内联样式
-const topStyle = computed(() => {
-
+const topAndZIndexStyle = computed(() => {
+  console.log('当前的zIndex', props.zIndex);
+  
   return ({
-    top: topOffset.value + 'px'
+    top: topOffset.value + 'px',
+    zIndex:props.zIndex
   })
 })
 onMounted(() => {
   startTimer()
+  
   // 返回元素的可见高度
   nextTick(() => { // 等待 DOM 更新后再访问
     if (messageRef.value) {
@@ -88,6 +95,7 @@ onMounted(() => {
   })
 })
 defineExpose({
-  bottomOffset
+  bottomOffset,
+  visible
 })
 </script>

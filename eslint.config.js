@@ -16,4 +16,10 @@ export default [
       '@typescript-eslint/no-explicit-any': 'off', // 允许使用 `any` 类型
     },
   },
+  {
+    files: ['**/*.ts'], // 这里专门匹配 TypeScript 文件
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off', // 禁用 any 规则
+    },
+  },
 ]

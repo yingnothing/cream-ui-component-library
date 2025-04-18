@@ -1,4 +1,5 @@
 import type { Options, Placement } from '@popperjs/core'
+import type { Ref } from 'vue'
 export interface TooltipProps {
   content?: string
   trigger?: 'hover' | 'click'
@@ -13,6 +14,7 @@ export interface TooltipEmits {
   (e: 'visible-change', values: boolean): void
 }
 export interface TooltipInstance {
+  isOpen: Ref<boolean>
   show: () => void
   hide: () => void
 }

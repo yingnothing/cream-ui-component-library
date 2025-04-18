@@ -1,20 +1,20 @@
 /* Icon组件样式 - 提供图标 */
 
 /* 图标基础样式 */
-.eb-icon {
-  --eb-icon-color: inherit; /* 默认继承父元素颜色 */
+.cr-icon {
+  --cr-icon-color: inherit; /* 默认继承父元素颜色 */
   display: inline-flex; /* 行内弹性布局 */
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   position: relative;
   fill: currentColor; /* SVG填充色使用当前文本色 */
-  color: var(--eb-icon-color); /* 使用图标颜色变量 */
+  color: var(--cr-icon-color); /* 使用图标颜色变量 */
   font-size: inherit; /* 继承字体大小 */
 }
 
 /* 不同类型图标颜色 (primary, info, success, warning, danger) */
 @each $val in primary, info, success, warning, danger {
-  .eb-icon--$(val) {
-    --eb-icon-color: var(--eb-color-$(val)); /* 使用对应主题色 */
+  .cr-icon--$(val) {
+    --cr-icon-color: var(--cr-color-$(val)); /* 使用对应主题色 */
   }
 }

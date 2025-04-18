@@ -6,12 +6,10 @@ export interface CollapseProps {
   modelValue: NameType[]
   accordion?: boolean
 }
-export interface collapseItemProps {
+export interface CollapseItemProps {
   // 必须有一个名称
   name: NameType
   title?: string
-  // 应该有内容content吧？
-  content?: string
   disabled?: boolean
 }
 

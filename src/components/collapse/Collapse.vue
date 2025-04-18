@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="eb-collapse">
+    <div class="cr-collapse">
       <slot></slot>
     </div>
   </div>
@@ -10,7 +10,7 @@
 import { provide, ref, watch } from 'vue';
 import { collapseContextKey, type CollapseProps, type CollaspeEmits, type NameType } from './types';
 defineOptions({
-  name: 'EbCollapse'
+  name: 'crCollapse'
 })
 // 拿到v-model
 const props = defineProps<CollapseProps>()
@@ -25,15 +25,19 @@ const handleItemClick = (item: NameType) => {
   // 通过检查数组内是否有这个name来决定要将其打开还是关闭
   const index = activeNames.value.indexOf(item)
   if (props.accordion) {
-    if (index > -1) {
+    // 手风琴模式
+
+    if (index <= -1) {
       activeNames.value = []
+
     } else {
+      console.log(activeNames.value);
       activeNames.value = [item]
+      console.log(activeNames.value)
     }
   }
   if (index > -1) {
     // console.log('删除前' + activeNames.value);
-    // 手风琴模式
 
     activeNames.value.splice(index, 1)
     // console.log('删除后' + activeNames.value);

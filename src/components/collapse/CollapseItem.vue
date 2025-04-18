@@ -1,9 +1,9 @@
 <template>
-  <div class="eb-collapse-item" :class="{
+  <div class="cr-collapse-item" :class="{
     'is-disabled': props.disabled,
   }">
     <!-- 头部 -->
-    <div class="eb-collapse-item__header" :class="{
+    <div class="cr-collapse-item__header" :class="{
       'is-disabled': props.disabled,
       'is-active': isActive
     }" :id="`item-header-${props.name}`" @click="handleClick">
@@ -12,11 +12,10 @@
     </div>
     <!-- 内容 -->
     <div>
-      <!-- 这里两个class为什么要用两个？ -->
       <Transition name="slide" v-on="transitionEvents">
-        <div class="eb-collapse-item__wrapper" v-show="isActive">
-          <div class="eb-collapse-item__content" :id="`item-content-${props.name}`">
-            <slot>{{ props.content }}</slot>
+        <div class="cr-collapse-item__wrapper" v-show="isActive">
+          <div class="cr-collapse-item__content" :id="`item-content-${props.name}`">
+            <slot></slot>
           </div>
         </div>
       </Transition>
@@ -26,12 +25,12 @@
 
 <script setup lang="ts">
 import { computed, inject } from 'vue';
-import { collapseContextKey, type collapseItemProps } from './types';
+import { collapseContextKey, type CollapseItemProps } from './types.ts';
 import Icon from '../Icon/Icon.vue';
 defineOptions({
-  name: 'EbCollapseItem'
+  name: 'crCollapseItem'
 })
-const props = defineProps<collapseItemProps>()
+const props = defineProps<CollapseItemProps>()
 const collapseContext = inject(collapseContextKey, undefined)
 const isActive = computed(() => collapseContext?.activeNames.value.includes(props.name))
 const handleClick = () => {
@@ -66,6 +65,7 @@ const transitionEvents: Record<string, (el: HTMLElement) => void> = {
     el.style.overflow = ''
   }
 }
+
 </script>
 
 <style scoped></style>

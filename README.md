@@ -1,39 +1,75 @@
-# vue-component-lib
+# CR Component Library
 
-This template should help get you started developing with Vue 3 in Vite.
+一个基于 Vue 3 + TypeScript 的现代化组件库。
 
-## Recommended IDE Setup
+## 安装
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+```bash
+# 使用npm
+npm install cream-ui -S
 
-## Type Support for `.vue` Imports in TS
+# 使用pnpm 
+pnpm add cream-ui
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+# 使用yarn
+yarn add cream-ui
 ```
 
-### Compile and Hot-Reload for Development
+## 使用
+pnpm run docs:dev
+打开使用说明文档
+### 全局引入
 
-```sh
-npm run dev
+```js
+import { createApp } from 'vue'
+import CreamUI from 'cream-ui'
+import 'cream-ui/dist/index.css'
+import App from './App.vue'
+
+const app = createApp(App)
+app.use(CreamUI)
+app.mount('#app')
 ```
 
-### Type-Check, Compile and Minify for Production
+### 按需引入
 
-```sh
-npm run build
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import { Button, Message } from 'cr-component-lib'
+import 'cr-component-lib/dist/cr-component-lib.css'
+
+const app = createApp(App)
+app.component('CrButton', Button)
+app.mount('#app')
+
+// 在组件中使用Message
+import { CrMessage } from 'cr-component-lib'
+
+// 调用方式
+CrMessage.success('操作成功')
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## 组件列表
 
-```sh
-npm run lint
+- Button 按钮
+- Collapse 折叠面板
+- Icon 图标
+- Message 消息提示
+- Tooltip 文字提示
+
+## 开发
+
+```bash
+# 安装依赖
+pnpm install
+
+# 开发模式
+pnpm dev
+
+# 构建
+pnpm build
 ```
+
+
+
