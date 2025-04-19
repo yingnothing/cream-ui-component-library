@@ -65,7 +65,7 @@ import { crMessage } from 'cr-component-lib'
 
 ```bash
 # 安装依赖
-pnpm install
+pnpm install yingqiu-cream-ui
 
 # 开发模式
 pnpm run dev
