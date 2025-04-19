@@ -6,17 +6,17 @@
 
 ```bash
 # 使用npm
-npm install cream-ui -S
+npm install yingqiu-cream-ui -S
 
 # 使用pnpm 
-pnpm add cream-ui
+pnpm add yingqiu-cream-ui
 
 # 使用yarn
-yarn add cream-ui
+yarn add yingqiu-cream-ui
 ```
 
 ## 使用
-### 打开使用说明文档
+### 运行以下命令打开使用说明文档
 pnpm run docs:dev
 ### 全局引入
 
