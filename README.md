@@ -50,7 +50,7 @@ app.mount('#app')
 import { crMessage } from 'cr-component-lib'
 
 // 调用方式
-crMessage.success('操作成功')
+  crMessage({ message: '操作成功' ,type:"success"})
 ```
 
 ## 组件列表
