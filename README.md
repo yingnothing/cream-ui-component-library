@@ -25,7 +25,7 @@ pnpm run docs:dev
 
 ```js
 import { createApp } from 'vue'
-import CreamUI from 'cream-ui'
+import CreamUI from 'yingqiu-cream-ui'
 import 'cream-ui/dist/index.css'
 import App from './App.vue'
 
@@ -39,7 +39,7 @@ app.mount('#app')
 ```js
 import { createApp } from 'vue'
 import App from './App.vue'
-import { Button, Message } from 'cr-component-lib'
+import { crButton, crMessage } from 'cr-component-lib'
 import 'cr-component-lib/dist/cr-component-lib.css'
 
 const app = createApp(App)
@@ -50,7 +50,7 @@ app.mount('#app')
 import { CrMessage } from 'cr-component-lib'
 
 // 调用方式
-CrMessage.success('操作成功')
+crMessage.success('操作成功')
 ```
 
 ## 组件列表
