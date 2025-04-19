@@ -43,7 +43,7 @@ import { crButton, crMessage } from 'cr-component-lib'
 import 'cr-component-lib/dist/cr-component-lib.css'
 
 const app = createApp(App)
-app.component('CrButton', Button)
+app.component('crButton', Button)
 app.mount('#app')
 
 // 在组件中使用Message
@@ -55,11 +55,11 @@ import { crMessage } from 'cr-component-lib'
 
 ## 组件列表
 
-- Button 按钮
-- Collapse 折叠面板
+- crButton 按钮
+- crCollapse 折叠面板
 - Icon 图标
-- Message 消息提示
-- Tooltip 文字提示
+- crMessage 消息提示
+- crTooltip 文字提示
 
 ## 开发
 
