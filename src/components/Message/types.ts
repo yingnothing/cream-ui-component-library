@@ -23,8 +23,24 @@ export interface CreateMessageProps {
   offset?: number
   duration?: number
   zIndex?: number
-
 }
+
+// 状态码映射表项的类型定义
+export interface CodeMessageItem {
+  type: MessageType
+  content: string
+  duration?: number
+  showClose?: boolean
+  icon?: string
+  offset?: number
+  zIndex?: number
+}
+
+// 状态码映射表的类型定义
+export interface CodeMessageMap {
+  [code: number]: CodeMessageItem
+}
+
 // 组件实例存放于数组
 export interface MessageContext {
   id: string | number

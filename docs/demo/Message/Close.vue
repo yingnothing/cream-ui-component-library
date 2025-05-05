@@ -1,8 +1,8 @@
 <script setup>
-import { CrMessage } from '@/components/Message/create.ts'
+import { crMessage } from '@/components/Message/create.ts'
 import crButton from '@/components/Button/Button.vue'
 const open = () => {
-  CrMessage({ message: 'hello world', showClose: true, duration: 0,zIndex:99 })
+  crMessage({ message: 'hello world', showClose: true, duration: 0,zIndex:99 })
 }
 </script>
 <template>

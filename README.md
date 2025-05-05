@@ -16,8 +16,9 @@ yarn add cream-ui
 ```
 
 ## 使用
+### 打开使用说明文档
 pnpm run docs:dev
-打开使用说明文档
+
 ### 全局引入
 
 ```js
@@ -71,5 +72,148 @@ pnpm dev
 pnpm build
 ```
 
+```
+vue-component-lib
+├─ .editorconfig
+├─ .eslintignore
+├─ .prettierrc.json
+├─ .vitepress
+├─ abc
+│  ├─ es
+│  │  ├─ components
+│  │  │  ├─ Button
+│  │  │  │  ├─ Button.vue.js
+│  │  │  │  ├─ Button.vue2.js
+│  │  │  │  └─ index.js
+│  │  │  ├─ Collapse
+│  │  │  │  ├─ Collapse.vue.js
+│  │  │  │  ├─ Collapse.vue2.js
+│  │  │  │  ├─ CollapseItem.vue.js
+│  │  │  │  ├─ CollapseItem.vue2.js
+│  │  │  │  ├─ index.js
+│  │  │  │  └─ types.js
+│  │  │  ├─ Icon
+│  │  │  │  ├─ Icon.vue.js
+│  │  │  │  ├─ Icon.vue2.js
+│  │  │  │  └─ index.js
+│  │  │  ├─ Message
+│  │  │  │  ├─ create.js
+│  │  │  │  ├─ index.js
+│  │  │  │  ├─ Message.vue.js
+│  │  │  │  └─ Message.vue2.js
+│  │  │  └─ Tooltip
+│  │  │     ├─ index.js
+│  │  │     ├─ Tooltip.vue.js
+│  │  │     └─ Tooltip.vue2.js
+│  │  ├─ hooks
+│  │  │  └─ useUtilTooltip.js
+│  │  └─ index.js
+│  ├─ types
+│  │  └─ index.d.ts
+│  └─ yingqiu-cream-ui.css
+├─ docs
+│  ├─ .vitepress
+│  │  ├─ config.ts
+│  │  └─ theme
+│  │     └─ index.ts
+│  ├─ api-examples.md
+│  ├─ components
+│  │  ├─ button.md
+│  │  ├─ collapse.md
+│  │  ├─ getting-started.md
+│  │  ├─ icon.md
+│  │  ├─ index.md
+│  │  ├─ message.md
+│  │  └─ tooltip.md
+│  ├─ demo
+│  │  ├─ Button
+│  │  │  ├─ Basic.vue
+│  │  │  ├─ Disabled.vue
+│  │  │  ├─ Icon.vue
+│  │  │  ├─ Loading.vue
+│  │  │  └─ Size.vue
+│  │  ├─ Collapse
+│  │  │  └─ Collapse
+│  │  │     ├─ Accordion.vue
+│  │  │     └─ Basic.vue
+│  │  ├─ Message
+│  │  │  ├─ Basic.vue
+│  │  │  ├─ Close.vue
+│  │  │  ├─ CloseAll.vue
+│  │  │  └─ Type.vue
+│  │  └─ Tooltip
+│  │     ├─ Basic.vue
+│  │     ├─ Click.vue
+│  │     ├─ Custom.vue
+│  │     ├─ Manual.vue
+│  │     └─ Placement.vue
+│  └─ markdown-examples.md
+├─ env.d.ts
+├─ eslint.config.js
+├─ eslint.config.ts
+├─ index.html
+├─ package.json
+├─ pnpm-lock.yaml
+├─ postcss.config.cjs
+├─ public
+├─ README.md
+├─ src
+│  ├─ App.vue
+│  ├─ assets
+│  │  ├─ base.css
+│  │  └─ main.css
+│  ├─ components
+│  │  ├─ Button
+│  │  │  ├─ Button.vue
+│  │  │  ├─ index.ts
+│  │  │  ├─ style.css
+│  │  │  ├─ types.ts
+│  │  │  └─ __test__
+│  │  │     └─ Button.test.ts
+│  │  ├─ Collapse
+│  │  │  ├─ Collapse.vue
+│  │  │  ├─ CollapseItem.vue
+│  │  │  ├─ index.ts
+│  │  │  ├─ style.css
+│  │  │  ├─ types.ts
+│  │  │  └─ __tests__
+│  │  │     └─ Collapse.test.ts
+│  │  ├─ Icon
+│  │  │  ├─ Icon.vue
+│  │  │  ├─ index.ts
+│  │  │  ├─ style.css
+│  │  │  ├─ types.ts
+│  │  │  └─ __tests__
+│  │  │     └─ Icon.test.ts
+│  │  ├─ Message
+│  │  │  ├─ create.ts
+│  │  │  ├─ index.ts
+│  │  │  ├─ Message.vue
+│  │  │  ├─ style.css
+│  │  │  ├─ types.ts
+│  │  │  └─ __tests__
+│  │  │     └─ Message.test.ts
+│  │  └─ Tooltip
+│  │     ├─ index.ts
+│  │     ├─ style.css
+│  │     ├─ Tooltip.vue
+│  │     ├─ types.ts
+│  │     └─ __tests__
+│  │        └─ Tooltip.test.ts
+│  ├─ Hello.vue
+│  ├─ hooks
+│  │  └─ useUtilTooltip.ts
+│  ├─ index.ts
+│  ├─ main.ts
+│  └─ shims-vue.d.ts
+├─ styles
+│  ├─ index.css
+│  ├─ reset.css
+│  └─ vars.css
+├─ tsconfig.app.json
+├─ tsconfig.json
+├─ tsconfig.node.json
+├─ vite.config.ts
+└─ vitest.config.ts
 
-
+```

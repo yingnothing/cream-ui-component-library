@@ -26,17 +26,16 @@ const handleItemClick = (item: NameType) => {
   const index = activeNames.value.indexOf(item)
   if (props.accordion) {
     // 手风琴模式
-
-    if (index <= -1) {
+    if (index > -1) {
       activeNames.value = []
-
     } else {
-      console.log(activeNames.value);
+      // 不在数组中要添加
       activeNames.value = [item]
-      console.log(activeNames.value)
     }
   }
-  if (index > -1) {
+ //非手风琴模式
+  else{
+    if (index > -1) {
     // console.log('删除前' + activeNames.value);
 
     activeNames.value.splice(index, 1)
@@ -44,6 +43,8 @@ const handleItemClick = (item: NameType) => {
   } else {
     activeNames.value.push(item)
   }
+  }
+
   emits('update:modelValue', activeNames.value)
   emits('change', activeNames.value)
 

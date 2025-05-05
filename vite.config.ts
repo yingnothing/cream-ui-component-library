@@ -12,7 +12,7 @@ export default defineConfig({
   plugins: [
     // 处理Vue单文件组件
     vue(),
-    // 生成TypeScript类型声明文件的插件，用于把项目中的类型声明提取成一个文件，从而可以自动获得提示
+    // 生成TypeScript类型声明文件的插件，用于把项目中的类型声明提取成一个文件，从而可以自动获得提示，这里主要是配置输出到哪里以及对应的名称
     dts({
       // 把src作为类型的根目录
       entryRoot:"./src",
@@ -21,15 +21,16 @@ export default defineConfig({
       // 输出到dist/types目录
       outDir: 'dist/types',
       staticImport: true,
-      // 告诉ts类型定义的位置
-      insertTypesEntry: true,
+      // // 在输出的 .d.ts 文件中插入类型声明的入口文件，通常是 index.d.ts，使得外部项目引用时可以更好地识别类型。
+      // insertTypesEntry: true,
       // 使用tsconfig.app.json的配置而不是tsconfig.json
       tsconfigPath:"./tsconfig.app.json",
       // 不要打包成单个.d.ts文件，以便更好地调试
-      rollupTypes: false,
+      rollupTypes: true,
       // 生成前清理目录
       cleanVueFileName: true,
       compilerOptions: {
+        // 跳过第三方库（node_modules）里的 .d.ts 文件检查，
         skipLibCheck: true,
         declaration: true,
         emitDeclarationOnly: true,
@@ -74,38 +75,42 @@ export default defineConfig({
       ],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-        globals: {
-          vue: 'Vue',
-          '@fortawesome/fontawesome-svg-core': 'FontawesomeCore',
-          '@fortawesome/free-solid-svg-icons': 'FaSolid',
-          '@fortawesome/free-regular-svg-icons': 'FaRegular',
-          '@fortawesome/free-brands-svg-icons': 'FaBrands',
-          '@fortawesome/vue-fontawesome': 'FontawesomeVue',
-          '@popperjs/core': 'Popper',
-          'lodash-es': '_'
-        },
+        // globals: {
+        //   vue: 'Vue',
+        //   '@fortawesome/fontawesome-svg-core': 'FontawesomeCore',
+        //   '@fortawesome/free-solid-svg-icons': 'FaSolid',
+        //   '@fortawesome/free-regular-svg-icons': 'FaRegular',
+        //   '@fortawesome/free-brands-svg-icons': 'FaBrands',
+        //   '@fortawesome/vue-fontawesome': 'FontawesomeVue',
+        //   '@popperjs/core': 'Popper',
+        //   'lodash-es': '_'
+        // },
         // 确保输出到dist目录
         dir: "dist",
-        // 为不同的引入方式提供不同的文件
+        // 关键：保持模块结构
+        preserveModules: true,
+        // // 取消放在同一个文件
+        // inlineDynamicImports: false,
+        // 关键：设置模块存放路径，以src为根输出目录
+        preserveModulesRoot: 'src',
+        // 控制打包输出的 JS 文件名
+        entryFileNames: (chunk) => {
+          return `es/${chunk.name}.js`;
+        },
+        // CSS文件输出配置
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') {
             return 'cream-ui.css';
           }
           return assetInfo.name || 'asset-[name]-[hash][extname]';
-        },
-        // 保持导出的模块结构
-        preserveModules: true,
-        // 取消放在同一个文件
-        inlineDynamicImports: false,
-        // 将模块放在es目录下
-        preserveModulesRoot: 'src',
+        }
       },
     },
-    // 确保CSS被提取到单独的文件中
-    cssCodeSplit: false,
-    // 是否压缩代码
-    minify: true,
-    // 源码映射文件，方便调试
-    sourcemap: true,
+      // // 确保CSS被提取到单独的文件中
+      // cssCodeSplit: false,
+      // // 是否压缩代码，不知道有什么作用
+      // minify: true,
+    // // 源码映射文件，方便调试
+    // sourcemap: true,
   },
 })

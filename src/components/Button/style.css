@@ -29,13 +29,13 @@
   white-space: nowrap; /* 文本不换行 */
   cursor: pointer; /* 鼠标指针 */
   color: var(--cr-button-text-color); /* 文本颜色 */
-  text-align: center;
-  box-sizing: border-box;
-  outline: none;
-  transition: 0.1s;
-  font-weight: var(--cr-button-font-weight);
-  user-select: none;
-  vertical-align: middle;
+  text-align: center;               /* 水平居中对齐文字内容 */
+  box-sizing: border-box;          /* 盒子宽度包含 padding 和 border（避免超出） */
+  outline: none;                   /* 移除点击聚焦时的默认轮廓（通常是蓝边框） */
+  transition: 0.1s;                /* 设置所有可动画属性的过渡时间为 0.1 秒 */
+  font-weight: var(--cr-button-font-weight);  /* 设置文字粗细 */
+  user-select: none;              /* 禁止用户选中文本，防止误操作选中按钮文字 */
+  vertical-align: middle;         /* 设置按钮在行内元素中垂直居中（常用于 inline-block 元素） */
   /* -wcrkit-appearance: none; */
   background-color: var(--cr-button-bg-color);
   border: var(--cr-border);

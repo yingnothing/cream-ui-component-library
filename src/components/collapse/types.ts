@@ -22,6 +22,7 @@ export interface CollaspeEmits {
 export interface CollapseContext {
   // 主要原来是使用响应式的，但我不知道为什么要，要回来看：因为activeNames是一个要传给子组件的响应式对象，
   activeNames: Ref<NameType[]>
+  // 用于修改数组
   handleItemClick: (name: NameType) => void
 }
 // 定义一个唯一key变量，类型指定为

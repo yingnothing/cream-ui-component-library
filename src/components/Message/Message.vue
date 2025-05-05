@@ -31,7 +31,6 @@ const props = withDefaults(defineProps<MessageProps>(), {
 const visible = ref<boolean>(true)
 // 添加点击关闭事件
 const handleClose = () => {
-  console.log('handleClose 被调用了')
   visible.value = false
 }
 // 考虑鼠标放上去时不会消失
@@ -44,7 +43,6 @@ const clearTimer = () => {
 }
 const startTimer = () => {
   if (props.duration > 0) {
-    console.log('当前的duration', props.duration);
 
     // 默认3s后消失
     timer = setTimeout(() => {
@@ -77,8 +75,7 @@ const bottomOffset = computed(() => {
 })
 // 使用内联样式
 const topAndZIndexStyle = computed(() => {
-  console.log('当前的zIndex', props.zIndex);
-  
+
   return ({
     top: topOffset.value + 'px',
     zIndex:props.zIndex
@@ -86,7 +83,7 @@ const topAndZIndexStyle = computed(() => {
 })
 onMounted(() => {
   startTimer()
-  
+
   // 返回元素的可见高度
   nextTick(() => { // 等待 DOM 更新后再访问
     if (messageRef.value) {

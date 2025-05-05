@@ -17,24 +17,28 @@
   ],
   "author": "YingQiu",
   "license": "MIT",
-  "main": "dist/cream-ui.es.js",
-  "module": "dist/cream-ui.es.js",
+"module": "dist/es/index.js",   
   "types": "dist/types/index.d.ts",
-  "style": "dist/cream-ui.css",
-  "exports": {
-    ".": {
-      "import": "./dist/cream-ui.es.js",
-      "types": "./dist/types/index.d.ts"
-    },
-    "./es": "./dist/cream-ui.es.js",
-    "./css": "./dist/yingqiu-cream-ui.css",
-    "./dist/style.css": "./dist/yingqiu-cream-ui.css",
-    "./package.json": "./package.json",
-    "./*": {
-      "import": "./dist/es/*",
-      "types": "./dist/types/*"
-    }
+  "style": "dist/yingqiu-cream-ui.css",
+"exports": {
+  ".": {
+    "import": ".dist/es/index.js",
+    "types": "./dist/types/index.d.ts"
   },
+  "./components/Button": {
+    "import": "./dist/es/components/Button/index.js"
+  },
+  "./components/Collapse": {
+    "import": "./dist/es/components/Collapse/index.js"
+  },
+  "./components/Icon": {
+    "import": "./dist/es/components/Icon/index.js"
+  },
+  "./css": {
+    "import": "./dist/yingqiu-cream-ui.css"
+  },
+  "./package.json": "./package.json"
+},
   "files": [
     "dist"
   ],
@@ -43,10 +47,8 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check build-only",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build",
+  "build": "vite build",
+  "preview": "vite preview",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "prepublishOnly": "npm run build",
@@ -58,6 +60,11 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
+    "lodash-es": "^4.17.21",
+    "postcss-each-variables": "^0.3.0"
+
+  },
+  "peerDependencies":{
     "@floating-ui/vue": "^1.1.6",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
@@ -65,14 +72,11 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@popperjs/core": "^2.11.8",
-    "@vitepress-demo-preview/component": "^2.3.2",
-    "@vitepress-demo-preview/plugin": "^1.4.0",
-    "lodash-es": "^4.17.21",
-    "postcss-each-variables": "^0.3.0",
-    "vitest": "^3.0.9",
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "vitest": "^3.0.9",
+
     "@tsconfig/node22": "^22.0.0",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.13.9",
@@ -102,6 +106,8 @@
     "vite-plugin-dts": "^4.5.3",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitepress": "^1.6.3",
-    "vue-tsc": "^2.2.8"
+    "vue-tsc": "^2.2.8",
+    "@vitepress-demo-preview/component": "^2.3.2",
+    "@vitepress-demo-preview/plugin": "^1.4.0"
   }
 }

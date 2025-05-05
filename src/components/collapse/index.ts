@@ -8,5 +8,5 @@ crCollapseItem.install = (app: App) => {
   app.component(crCollapseItem.name!, crCollapseItem)
 }
 export default crCollapse
-export { crCollapseItem }
+export { crCollapse,crCollapseItem }
 export * from './types'

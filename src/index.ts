@@ -5,7 +5,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import crButton from '@/components/Button'
 import crCollapse, { crCollapseItem } from '@/components/Collapse'
 import crIcon from '@/components/Icon'
-import Message, { CrMessage, closeAll as closeMessageAll } from '@/components/Message'
+import Message, { crMessage, closeAll as closeMessageAll } from '@/components/Message'
 import crTooltip from '@/components/Tooltip'
 import '../styles/index.css'
 
@@ -25,7 +25,7 @@ const install = (app: App): void => {
   })
 }
 
-export { install, crButton, crCollapse, crCollapseItem, crIcon, Message, CrMessage, closeMessageAll, crTooltip }
+export { install, crButton, crCollapse, crCollapseItem, crIcon, Message, crMessage, closeMessageAll, crTooltip }
 
 export default {
   install,

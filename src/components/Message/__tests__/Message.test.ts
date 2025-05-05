@@ -6,7 +6,7 @@ import { describe, it, expect, vi, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import Message from '../Message.vue'
-import { CrMessage, closeAll } from '../create'
+import { crMessage, closeAll } from '../create'
 // 拿到暴露的方法
 import * as createModule from '../create'
 
@@ -44,7 +44,7 @@ describe('Message.vue', () => {
   it('应该正确渲染不同类型的Message', async () => {
     // 测试不同类型
     const types = ['info', 'success', 'warning', 'danger', 'primary']
-    
+
     for (const type of types) {
       const wrapper = mount(Message, {
         props: {
@@ -86,13 +86,13 @@ describe('Message.vue', () => {
 
     expect(wrapper.find('.cr-message__close').exists()).toBe(true)
     expect(wrapper.classes()).toContain('is-close')
-    
+
     // 点击关闭按钮
     console.log('点击后 visible 值为：', wrapper.vm.visible)
     await wrapper.find('.icon-stub').trigger('click')
-    // vm是组件的实例，它是一个对象，里面包含组件的属性和方法   
+    // vm是组件的实例，它是一个对象，里面包含组件的属性和方法
     expect(wrapper.vm.visible).toBe(false)
-    
+
     // 测试visible变为false后会调用destroyFn
     await nextTick()
     expect(destroyFn).toHaveBeenCalled()
@@ -117,11 +117,11 @@ describe('Message.vue', () => {
 
     // 验证初始状态不会立即关闭
     expect(destroyFn).not.toHaveBeenCalled()
-    
+
     // 快进时间
     vi.advanceTimersByTime(1000)
     expect(destroyFn).not.toHaveBeenCalled()
-    
+
     // 快进超过duration的时间
     vi.advanceTimersByTime(1500)
     await nextTick()
@@ -148,14 +148,14 @@ describe('Message.vue', () => {
 
     // 鼠标进入
     await wrapper.trigger('mouseenter')
-    
+
     // 快进超过duration的时间
     vi.advanceTimersByTime(3000)
     expect(destroyFn).not.toHaveBeenCalled()
-    
+
     // 鼠标离开
     await wrapper.trigger('mouseleave')
-    
+
     // 快进超过duration的时间
     vi.advanceTimersByTime(2500)
     await nextTick()
@@ -181,14 +181,14 @@ describe('Message.vue', () => {
     // 模拟getLastBottomOffset返回0    ，createModule是文件暴露出来的方法的集合 ，监视该方法
     vi.spyOn(createModule, 'getLastBottomOffset').mockReturnValue(0)
     await nextTick()
-    
+
     expect(wrapper.vm.topStyle).toEqual({ top: '100px' })
   })
 
   // 测试多个Message的堆叠
   it('多个Message应该正确堆叠', async () => {
 
-    
+
     // 模拟getLastBottomOffset函数针对不同id返回不同值
     const getLastBottomOffsetSpy = vi.spyOn(createModule, 'getLastBottomOffset')
       .mockImplementation((id) => {
@@ -196,7 +196,7 @@ describe('Message.vue', () => {
         if (id === 'msg-2') return 120
         return 0
       })
-    
+
     // 创建两个消息
     const wrapper1 = mount(Message, {
       props: {
@@ -206,7 +206,7 @@ describe('Message.vue', () => {
       },
       global: { stubs: { 'Icon': true } }
     })
-    
+
 
     const wrapper2 = mount(Message, {
       props: {
@@ -216,44 +216,44 @@ describe('Message.vue', () => {
       },
       global: { stubs: { 'Icon': true } }
     })
-    
 
-    
+
+
     await nextTick()
-    
+
     // 实例内的topStyle
     expect(wrapper1.vm.topStyle).toEqual({ top: '20px' }) // 默认offset是20
     expect(wrapper2.vm.topStyle).toEqual({ top: '140px' }) // 20 + 120
-    
+
     getLastBottomOffsetSpy.mockRestore()
   })
 
   // 测试CrMessage函数创建Message实例
   it('CrMessage函数应该创建Message实例并添加到DOM', async () => {
     // 使用CrMessage创建消息
-    const messageInstance = CrMessage({
+    const messageInstance = crMessage({
       message: '通过函数创建的消息',
       duration: 0 // 设置为0，不会自动关闭
     })
-    
+
     await nextTick()
-    
+
     // 验证消息已添加到DOM
     const messageElement = document.querySelector('.cr-message')
     expect(messageElement).not.toBeNull()
     expect(messageElement?.textContent).toContain('通过函数创建的消息')
-    
+
     // 验证实例对象的结构
     expect(messageInstance).toHaveProperty('id')
     expect(messageInstance).toHaveProperty('vnode')
     expect(messageInstance).toHaveProperty('props')
     expect(messageInstance).toHaveProperty('vm')
     expect(messageInstance).toHaveProperty('manualDestroy')
-    
+
     // 测试手动销毁功能
     messageInstance.manualDestroy()
     await nextTick()
-    
+
     // 销毁后visible应该为false（使用可选链避免可能的空值）
     expect(messageInstance.vm.exposed?.visible.value).toBe(false)
   })
@@ -261,30 +261,30 @@ describe('Message.vue', () => {
   // 测试closeAll函数
   it('closeAll函数应该关闭所有消息', async () => {
     // 创建多个消息
-    const message1 = CrMessage({ message: '消息1', duration: 0 })
-    const message2 = CrMessage({ message: '消息2', duration: 0 })
-    const message3 = CrMessage({ message: '消息3', duration: 0 })
-    
+    const message1 = crMessage({ message: '消息1', duration: 0 })
+    const message2 = crMessage({ message: '消息2', duration: 0 })
+    const message3 = crMessage({ message: '消息3', duration: 0 })
+
     await nextTick()
-    
+
     // 验证初始状态
     const messageElements = document.querySelectorAll('.cr-message')
     expect(messageElements.length).toBe(3)
-    
+
     // 使用spy监控所有消息的manualDestroy方法
     const spy1 = vi.spyOn(message1, 'manualDestroy')
     const spy2 = vi.spyOn(message2, 'manualDestroy')
     const spy3 = vi.spyOn(message3, 'manualDestroy')
-    
+
     // 调用closeAll
     closeAll()
     await nextTick()
-    
+
     // 验证所有消息的manualDestroy方法被调用
     expect(spy1).toHaveBeenCalled()
     expect(spy2).toHaveBeenCalled()
     expect(spy3).toHaveBeenCalled()
   })
 
-  
-}) 
+
+})

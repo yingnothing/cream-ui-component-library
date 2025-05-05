@@ -62,8 +62,7 @@
     <hr>
     <div class="icon">
       <Icon icon="user-secret" type="success" size="2xl"></Icon>
-      <Icon icon="far fa-female" type="success" size="2xl"></Icon>
-      <Icon icon="user" type="warning" size="2xl" />
+、      <Icon icon="user" type="warning" size="2xl" />
       <Icon icon="arrow-up" type="success" size="2xl" />
       <Icon icon="arrow-down" type="primary" size="2xl" />
       <Icon icon="arrow-left" type="danger" size="2xl" />
@@ -91,6 +90,17 @@
     <hr>
     <Button @click="createMessage">createMessage</Button>
     <hr>
+    <h2>测试状态码映射功能</h2>
+    <div class="button">
+      <Button @click="testCodeMessage(10000)">成功消息(10000)</Button>
+      <Button @click="testCodeMessage(10001)">参数错误(10001)</Button>
+      <Button @click="testCodeMessage(10002)">登录失效(10002)</Button>
+      <Button @click="testCodeMessage(10003)">权限不足(10003)</Button>
+      <Button @click="testCodeMessage(10004)">资源不存在(10004)</Button>
+      <Button @click="testCodeMessage(10005)">服务器异常(10005)</Button>
+      <Button @click="testCustomCodeMessage">自定义状态码(20001)</Button>
+    </div>
+    <hr>
     <hr>
   </main>
 </template>
@@ -102,10 +112,11 @@ import CollapseItem from './components/Collapse/CollapseItem.vue';
 import Icon from './components/Icon/Icon.vue';
 import Tooltip from './components/Tooltip/Tooltip.vue';
 // import Message from './components/Message/Message.vue';
-import { CrMessage } from './components/Message/create.ts'
+import { crMessage, crMessageByCode, setCodeMessageMap } from './components/Message/create.ts'
 import type { ButtonInstance } from './components/Button/types';
 import type { TooltipInstance } from './components/Tooltip/types';
 import type { Options } from '@popperjs/core';
+import type { CodeMessageMap } from './components/Message/types';
 const buttonRef = ref<ButtonInstance | null>(null)
 const toolTipRef = ref<TooltipInstance | null>(null)
 const DropdownRef = ref<TooltipInstance | null>(null)
@@ -129,30 +140,30 @@ onMounted(() => {
     instance.manualDestroy()
   }, 2000);
 
-  CrMessage({
+  crMessage({
     type: 'info',
     message: 'createMessage0',
     duration: 2000,
     showClose: true
   })
-  CrMessage({
+  crMessage({
     message: 'createMessage1',
     type:'primary',
     duration: 0,
     showClose: true})
-  CrMessage({
+  crMessage({
     type: 'danger',
     message: 'createMessage2',
     duration: 2000,
     showClose: true
   })
-  CrMessage({
+  crMessage({
     type: 'warning',
     message: 'createMessage3',
     duration: 2000,
     showClose: true
   })
-  const instance = CrMessage({
+  const instance = crMessage({
     type: 'success',
     message: 'createMessage4',
     duration: 0,
@@ -177,7 +188,7 @@ const handleClickClose = () => {
 }
 const createMessage = () => {
   // console.log('666')
-  // CrMessage({
+  // crMessage({
   //   type: 'info',
   //   message: 'createMessage',
   //   duration: 0,
@@ -185,6 +196,24 @@ const createMessage = () => {
   // })
 }
 
+// 测试状态码映射功能
+const testCodeMessage = (code: number) => {
+  crMessageByCode(code);
+}
+
+// 测试自定义状态码映射
+const testCustomCodeMessage = () => {
+  // 设置自定义状态码映射
+  const customCodeMap: CodeMessageMap = {
+    20001: { type: 'primary', content: '这是一个自定义的状态码消息', showClose: true, duration: 3000 }
+  }
+
+  // 更新状态码映射表
+  setCodeMessageMap(customCodeMap);
+
+  // 使用自定义状态码
+  crMessageByCode(20001);
+}
 </script>
 
 <style scoped>

@@ -1,11 +1,11 @@
 <script setup>
-import { CrMessage } from '@/components/Message/create.ts'
+import { crMessage } from '@/components/Message/create.ts'
 import crButton from '@/components/Button/Button.vue'
 const open = () => {
-  CrMessage({ message: 'hello world',zIndex:99 ,type:"primary"})
+  crMessage({ message: '操作成功' ,type:"success"})
 }
 const open1 = () => {
-  CrMessage({ message: 'hello world',showClose:true,zIndex:99,type:"primary" })
+  crMessage({ message: 'hello world',showClose:true,zIndex:99,type:"primary" })
 }
 </script>
 <template>

@@ -1,13 +1,56 @@
-import type { MessageContext, MessageProps, CreateMessageProps } from './types'
+import type { MessageContext, MessageProps, CreateMessageProps, CodeMessageMap } from './types'
 import Message from './Message.vue'
 import { createVNode, ref, render } from 'vue'
 // 使用一个数组来管理所创建的Message实例
 const instances = ref<MessageContext[]>([])
 let messageIdCounter = 0
-export function CrMessage(props: CreateMessageProps) {
+
+// 定义默认的状态码映射表
+const defaultCodeMessageMap: CodeMessageMap = {
+  10000: { type: 'success', content: '操作成功！' },
+  10001: { type: 'danger', content: '请求参数错误，请检查！' },
+  10002: { type: 'danger', content: '登录已失效，请重新登录' },
+  10003: { type: 'warning', content: '权限不足，无法操作' },
+  10004: { type: 'danger', content: '资源不存在' },
+  10005: { type: 'danger', content: '服务器异常，请稍后重试' }
+}
+
+// 当前使用的状态码映射表，初始化为默认映射表
+let codeMessageMap: CodeMessageMap = { ...defaultCodeMessageMap }
+
+// 设置状态码映射表的方法
+export function setCodeMessageMap(map: CodeMessageMap) {
+  codeMessageMap = { ...defaultCodeMessageMap, ...map }
+}
+
+// 重置状态码映射表为默认值
+export function resetCodeMessageMap() {
+  codeMessageMap = { ...defaultCodeMessageMap }
+}
+
+// 根据状态码创建消息
+export function crMessageByCode(code: number) {
+  const messageItem = codeMessageMap[code]
+  if (!messageItem) {
+    console.warn(`未找到状态码 ${code} 对应的消息配置`)
+    return null
+  }
+
+  return crMessage({
+    message: messageItem.content,
+    type: messageItem.type,
+    showClose: messageItem.showClose,
+    icon: messageItem.icon,
+    offset: messageItem.offset,
+    duration: messageItem.duration,
+    zIndex: messageItem.zIndex
+  })
+}
+
+export function crMessage(props: CreateMessageProps) {
   // 生成唯一标识
   const id = messageIdCounter++
-  // 在适当时机将当前组件进行销毁，传给组件内部，通过组件内id找到数组里面对应的组件instance，进行销毁 
+  // 在适当时机将当前组件进行销毁，传给组件内部，通过组件内id找到数组里面对应的组件instance，进行销毁
   const destroyMessage = () => {
     const destroyIndex = instances.value.findIndex((instance) => instance.id === id)
     if (destroyIndex === -1) {

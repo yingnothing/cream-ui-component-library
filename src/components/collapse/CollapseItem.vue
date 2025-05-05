@@ -7,12 +7,14 @@
       'is-disabled': props.disabled,
       'is-active': isActive
     }" :id="`item-header-${props.name}`" @click="handleClick">
+    <!-- 可以默认title，也可以传入复杂结构 -->
       <slot name="title">{{ props.title }}</slot>
       <Icon icon="angle-right" class="header-angle"></Icon>
     </div>
     <!-- 内容 -->
     <div>
       <Transition name="slide" v-on="transitionEvents">
+        <!-- 根据isActive决定是否展示 -->
         <div class="cr-collapse-item__wrapper" v-show="isActive">
           <div class="cr-collapse-item__content" :id="`item-content-${props.name}`">
             <slot></slot>
@@ -32,12 +34,13 @@ defineOptions({
 })
 const props = defineProps<CollapseItemProps>()
 const collapseContext = inject(collapseContextKey, undefined)
+// 点击的时候会把当前name添加或移除进数组，导致activeNames的变化，从而导致isActive重新计算
 const isActive = computed(() => collapseContext?.activeNames.value.includes(props.name))
 const handleClick = () => {
 
   // 要触发事件,但item是使用slot传过来的,所以无法使用父子传参
   if (props.disabled) { return }
-  // 触发事件更新数组
+  // 触发注入对象里的点击事件更新数组，将当前name传递过期
   collapseContext?.handleItemClick(props.name)
 }
 // 过渡动画事件处理
