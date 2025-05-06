@@ -21,7 +21,8 @@ yarn add yingqiu-cream-ui
 ### 运行以下命令打开使用说明文档
 pnpm run docs:dev
 
-![image](https://github.com/user-attachments/assets/f3ca560b-d506-43d8-b71d-dbf5b25b1a5d)
+![image](https://github.com/user-attachments/assets/5aa1e615-85fd-460e-bfc4-b5b506c41079)
+
 
 
 ### 全局引入
