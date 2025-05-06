@@ -6,25 +6,30 @@
 
 ```bash
 # 使用npm
-npm install cream-ui -S
+npm install yingqiu-cream-ui -S
 
 # 使用pnpm 
-pnpm add cream-ui
+pnpm add yingqiu-cream-ui
 
 # 使用yarn
-yarn add cream-ui
+yarn add yingqiu-cream-ui
 ```
 
 ## 使用
-### 打开使用说明文档
+
+
+### 运行以下命令打开使用说明文档
 pnpm run docs:dev
+
+![image](https://github.com/user-attachments/assets/f3ca560b-d506-43d8-b71d-dbf5b25b1a5d)
+
 
 ### 全局引入
 
 ```js
 import { createApp } from 'vue'
-import CreamUI from 'cream-ui'
-import 'cream-ui/dist/index.css'
+import CreamUI from 'yingqiu-cream-ui'
+import 'yingqiu-cream-ui/css'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -37,39 +42,39 @@ app.mount('#app')
 ```js
 import { createApp } from 'vue'
 import App from './App.vue'
-import { Button, Message } from 'cr-component-lib'
+import { crButton, crMessage } from 'cr-component-lib'
 import 'cr-component-lib/dist/cr-component-lib.css'
 
 const app = createApp(App)
-app.component('CrButton', Button)
+app.component('crButton', Button)
 app.mount('#app')
 
 // 在组件中使用Message
-import { CrMessage } from 'cr-component-lib'
+import { crMessage } from 'cr-component-lib'
 
 // 调用方式
-CrMessage.success('操作成功')
+  crMessage({ message: '操作成功' ,type:"success"})
 ```
 
 ## 组件列表
 
-- Button 按钮
-- Collapse 折叠面板
+- crButton 按钮
+- crCollapse 折叠面板
 - Icon 图标
-- Message 消息提示
-- Tooltip 文字提示
+- crMessage 消息提示
+- crTooltip 文字提示
 
 ## 开发
 
 ```bash
 # 安装依赖
-pnpm install
+pnpm install yingqiu-cream-ui
 
 # 开发模式
-pnpm dev
+pnpm run dev
 
 # 构建
-pnpm build
+pnpm run build
 ```
 
 ```
